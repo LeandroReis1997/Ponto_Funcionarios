@@ -1,0 +1,92 @@
+﻿@model PointRecord.Models.Employees.Employees
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section>
+    Novo Funcionário
+
+    @using (Html.BeginForm("add", "employees", FormMethod.Post))
+    {
+        @Html.HiddenFor(x => x.Id)
+
+        <div class="row">
+            <div class="col-md-4">
+                <label>Name:</label>
+                <input type="text" class="form-control" asp-for="Name" />
+
+            </div>
+            <div class="col-md-4">
+
+                <label>CPF:</label>
+                <input type="text" class="form-control" asp-for="CPF" />
+
+            </div>
+            <div class="col-md-4">
+
+                <label>CEP:</label>
+                <input type="text" class="form-control" asp-for="CEP" />
+
+            </div>
+
+
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label>Telefone:</label>
+                <input type="text" class="form-control" asp-for="Telephone" />
+            </div>
+
+            <div class="col-md-4">
+
+                <label>Endereço:</label>
+                <input type="text" class="form-control" asp-for="_Address" />
+            </div>
+
+            <div class="col-md-4">
+
+                <label>Cidade:</label>
+                <input type="text" class="form-control" asp-for="City" />
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+
+                <label>Estado:</label>
+                <input type="text" class="form-control" asp-for="_State" />
+            </div>
+
+            <div class="col-md-4">
+
+                <label>Bairro:</label>
+                <input type="text" class="form-control" asp-for="neighborhood" />
+
+            </div>
+
+            <div class="col-md-4">
+
+                <label>Data Nascimento:</label>
+                <input type="text" class="form-control" asp-for="Datebirth" />
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label>Data Cadastro:</label>
+                <input type="text" class="form-control" asp-for="Dateregister" />
+            </div>
+
+            <div class="col-md-6">
+                <label>Setor:</label>
+                <input type="text" class="form-control" asp-for="SectorId" /><br />
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%;">salvar</button>
+
+    }
+</section>
