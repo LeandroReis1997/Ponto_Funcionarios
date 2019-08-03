@@ -9,6 +9,8 @@ namespace api.system.sector.Repository
 
         IEnumerable<Sector> GetAll();
 
+        IEnumerable<Sector> GetAllOrderBy();
+
         Sector Find(long id);
 
         void update(Sector sector);

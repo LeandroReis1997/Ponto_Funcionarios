@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PointRecord.Models.Employees;
+using PointRecord.Models.Sector;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -10,9 +11,9 @@ namespace PointRecord.Controllers
     [Route("employees")]
     public class EmployeesController : Controller
     {
-        [Route("")]
-        [Route("~/")]
-        [Route("index")]
+        //[Route("")]
+        //[Route("~/")]
+        //[Route("index")]
         public async Task<IActionResult> Index()
         {
             var employeesRestClient = new EmployeesRestClient();
@@ -23,11 +24,14 @@ namespace PointRecord.Controllers
 
         [HttpGet]
         [Route("add")]
-        public IActionResult Add()
+        public async Task<IActionResult> Add()
         {
-            var newDate = new Employees();
-            newDate.Dateregister = DateTime.Now;
-            return View("Add", newDate);
+            var sectorRestClient = new SectorsRestClient();
+            var employees = new Employees();
+            employees.Dateregister = DateTime.Now;
+            employees.Sector = await sectorRestClient.GetAllOrderBy
+            ().Result.Content.ReadAsAsync<List<Sectors>>();
+            return View("Add", employees);
         }
 
         [HttpPost]
@@ -44,8 +48,10 @@ namespace PointRecord.Controllers
         public async Task<IActionResult> Update(long id)
         {
             var EmployeesRestClient = new EmployeesRestClient();
+            var sector = new SectorsRestClient();
             var Employees = await EmployeesRestClient.Find
                 (id).Result.Content.ReadAsAsync<Employees>();
+            Employees.Sector = await sector.GetAllOrderBy().Result.Content.ReadAsAsync<List<Sectors>>();
             return View("Edit", Employees);
         }
 

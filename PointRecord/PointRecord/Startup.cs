@@ -24,7 +24,7 @@ namespace PointRecord
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=employees}/{action=Index}/{id?}");
+                    template: "{controller=home}/{action=Index}/{id?}");
             });
 
         }

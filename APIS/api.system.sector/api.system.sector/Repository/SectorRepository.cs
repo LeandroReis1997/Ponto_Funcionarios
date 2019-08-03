@@ -29,6 +29,11 @@ namespace api.system.sector.Repository
             return _context.Sectors.ToList();
         }
 
+        public IEnumerable<Sector> GetAllOrderBy()
+        {
+            return _context.Sectors.Where(x => x.Active == true).ToList();
+        }
+
         public void remover(long id)
         {
             var entity = _context.Sectors.First(w => w.Id == id);

@@ -39,6 +39,18 @@ namespace api.system.sector.Controllers
             return repository.GetAll();
         }
 
+        [HttpGet("GetAllOrderBy")]
+        [Produces(typeof(IEnumerable<Sector>))]
+        [SwaggerResponse((int)HttpStatusCode.OK, Description = "OK", Type = typeof(IEnumerable<Sector>))]
+        [SwaggerResponse((int)HttpStatusCode.OK, Description = "OK", Type = typeof(Sector))]
+        [SwaggerResponse((int)HttpStatusCode.Unauthorized, Description = "Erro de Autenticação")]
+        [SwaggerResponse((int)HttpStatusCode.NotFound, Description = "Recurso não encontrado")]
+        [SwaggerResponse((int)HttpStatusCode.InternalServerError, Description = "Erro na API")]
+        public IEnumerable<Sector> GetAllOrderBy()
+        {
+            return repository.GetAllOrderBy();
+        }
+
         /// <summary>
         /// Retorna um setor através de seu Id
         /// </summary>

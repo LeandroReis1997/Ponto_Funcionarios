@@ -7,7 +7,7 @@
 <section>
     Novo Funcionário
 
-    <form asp-controller="employees" method="post" asp-action="add">
+    <form asp-controller="employees" method="post" asp-action="update">
 
         <div class="row">
             <div class="col-md-4">
@@ -71,7 +71,9 @@
                 @Html.DropDownListFor(m => m.SectorId, new SelectList(Model.Sector, "Id", "Name", Model.Sector.First().Id), "-- Selecione o Setor --", new { @class = "form-control", @id = "sector", @required = "true", @style = "padding-top: 3px;" })<br />
             </div>
         </div>
+
         <button type="submit" class="btn btn-primary" style="width:100%;">salvar</button>
 
     </form>
+
 </section>

@@ -1,0 +1,29 @@
+﻿@model PointRecord.Models.Sector.Sectors
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section>
+    Novo Setor
+
+    <form asp-controller="sectors" method="post" asp-action="add">
+
+        <div class="row">
+            <div class="col-md-6">
+                <label>Name:</label>
+                <input type="text" class="form-control" asp-for="Name" /><br />
+            </div>
+        </div>
+
+        <div class="row">
+                <label>Ativo: </label>
+                <input type="checkbox" asp-for="Active" /><br />
+            <div class="col-md-12">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%;">salvar</button>
+
+    </form>
+</section>

@@ -2,6 +2,7 @@
 using PointRecord.Models.Sector;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 
 namespace PointRecord.Models.Employees
 {
@@ -25,5 +26,6 @@ namespace PointRecord.Models.Employees
         public DateTime? Dateregister { get; set; }
         public int? SectorId { get; set; }
         public Sectors Sectors { get; set; }
+        public List<Sectors> Sector { get; set; }
     }
 }

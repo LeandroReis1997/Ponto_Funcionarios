@@ -1,0 +1,35 @@
+﻿@model List<PointRecord.Models.Sector.Sectors>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>
+    Lista de Setores
+</h1>
+
+@Html.ActionLink("Novo Setor", "add", "sectors")
+
+
+<table>
+    <tr>
+        <th>Nome</th>
+        <th>Ativo</th>
+        <th>Ações</th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Active</td>
+            
+
+            <td>
+                <a asp-controller="sectors" asp-action="update" asp-route-id="@item.Id"> Edit</a> |
+                <a asp-controller="sectors" asp-action="delete" asp-route-id="@item.Id"> Delete </a>
+
+            </td>
+        </tr>
+    }
+</table>
