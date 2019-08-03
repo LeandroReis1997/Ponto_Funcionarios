@@ -5,73 +5,87 @@
 }
 
 <section>
-    Novo Funcionário
 
-    <form asp-controller="employees" method="post" asp-action="add">
+    @if (Model.Sector.Count > 0)
+    {
+        <form asp-controller="employees" method="post" asp-action="add">
 
+            Novo Funcionário
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label>Name:</label>
+                    <input type="text" class="form-control" asp-for="Name" />
+                </div>
+                <div class="col-md-4">
+                    <label>CPF:</label>
+                    <input type="text" class="form-control" asp-for="CPF" />
+                </div>
+                <div class="col-md-4">
+
+                    <label>CEP:</label>
+                    <input type="text" class="form-control" asp-for="CEP" />
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <label>Telefone:</label>
+                    <input type="text" class="form-control" asp-for="Telephone" />
+                </div>
+
+                <div class="col-md-4">
+                    <label>Endereço:</label>
+                    <input type="text" class="form-control" asp-for="_Address" />
+                </div>
+
+                <div class="col-md-4">
+                    <label>Cidade:</label>
+                    <input type="text" class="form-control" asp-for="City" />
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label>Estado:</label>
+                    <input type="text" class="form-control" asp-for="_State" />
+                </div>
+
+                <div class="col-md-4">
+                    <label>Bairro:</label>
+                    <input type="text" class="form-control" asp-for="neighborhood" />
+                </div>
+
+                <div class="col-md-4">
+                    <label>Data Nascimento:</label>
+                    <input type="text" class="form-control" asp-for="Datebirth" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Data Cadastro:</label>
+                    <input type="text" class="form-control" asp-for="Dateregister" />
+                </div>
+
+                <div class="col-md-6">
+                    @Html.LabelFor(m => m.SectorId, "Setor")
+                    @Html.DropDownListFor(m => m.SectorId, new SelectList(Model.Sector, "Id", "Name", Model.Sector.First().Id), "-- Selecione o Setor --", new { @class = "form-control", @id = "sector", @required = "true", @style = "padding-top: 3px;" })<br />
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;">salvar</button>
+
+        </form>
+    }
+    else
+    {
+        <h2 class="text-center text-danger"><b>Erro - Nenhum setor encontrado</b></h2><br />
         <div class="row">
-            <div class="col-md-4">
-                <label>Name:</label>
-                <input type="text" class="form-control" asp-for="Name" />
-            </div>
-            <div class="col-md-4">
-                <label>CPF:</label>
-                <input type="text" class="form-control" asp-for="CPF" />
-            </div>
-            <div class="col-md-4">
-
-                <label>CEP:</label>
-                <input type="text" class="form-control" asp-for="CEP" />
-
+            <div class="col-md-12">
+                <h3 class="text-center alert alert-danger">@ViewBag.sector</h3>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4">
-                <label>Telefone:</label>
-                <input type="text" class="form-control" asp-for="Telephone" />
-            </div>
+    }
 
-            <div class="col-md-4">
-                <label>Endereço:</label>
-                <input type="text" class="form-control" asp-for="_Address" />
-            </div>
-
-            <div class="col-md-4">
-                <label>Cidade:</label>
-                <input type="text" class="form-control" asp-for="City" />
-            </div>
-
-        </div>
-
-        <div class="row">
-            <div class="col-md-4">
-                <label>Estado:</label>
-                <input type="text" class="form-control" asp-for="_State" />
-            </div>
-
-            <div class="col-md-4">
-                <label>Bairro:</label>
-                <input type="text" class="form-control" asp-for="neighborhood" />
-            </div>
-
-            <div class="col-md-4">
-                <label>Data Nascimento:</label>
-                <input type="text" class="form-control" asp-for="Datebirth" />
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <label>Data Cadastro:</label>
-                <input type="text" class="form-control" asp-for="Dateregister" />
-            </div>
-
-            <div class="col-md-6">
-                @Html.LabelFor(m => m.SectorId, "Setor")
-                @Html.DropDownListFor(m => m.SectorId, new SelectList(Model.Sector, "Id", "Name", Model.Sector.First().Id), "-- Selecione o Setor --", new { @class = "form-control", @id = "sector", @required = "true", @style = "padding-top: 3px;" })<br />
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary" style="width:100%;">salvar</button>
-
-    </form>
 </section>

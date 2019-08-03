@@ -11,25 +11,26 @@
 @Html.ActionLink("Novo Setor", "add", "sectors")
 
 
-<table>
-    <tr>
-        <th>Nome</th>
-        <th>Ativo</th>
-        <th>Ações</th>
-
-    </tr>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Ativo</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
     @foreach (var item in Model)
     {
-        <tr>
-            <td>@item.Name</td>
-            <td>@item.Active</td>
-            
+        <tbody>
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Active</td>
 
-            <td>
-                <a asp-controller="sectors" asp-action="update" asp-route-id="@item.Id"> Edit</a> |
-                <a asp-controller="sectors" asp-action="delete" asp-route-id="@item.Id"> Delete </a>
-
-            </td>
-        </tr>
+                <td>
+                    <a asp-controller="sectors" asp-action="update" asp-route-id="@item.Id" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                    <a asp-controller="sectors" asp-action="delete" asp-route-id="@item.Id" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                </td>
+            </tr>
+        </tbody>
     }
 </table>
