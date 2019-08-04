@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace PointRecord.Models.Employees
 {
     [Table("Employees")]
-    public class Employees
+    public class Employeees
     {
         public int Id { get; set; }
         public string Name { get; set; }

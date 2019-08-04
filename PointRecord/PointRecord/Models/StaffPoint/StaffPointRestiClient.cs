@@ -3,15 +3,15 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace PointRecord.Models.Employees
+namespace PointRecord.Models.StaffPoint
 {
-    public class EmployeesRestClient
+    public class StaffPointRestiClient
     {
         //Rodar api pelo IIS
-        private string BASE_URL = "https://localhost:44367/api/employees/";
+        private string BASE_URL = "https://localhost:44335/api/staffpoint/";
 
         //Rodar pelo Console
-        //private string BASE_URL = "https://localhost:5001/api/employees/";
+        //private string BASE_URL = "https://localhost:5001/api/staffpoint/";
 
         public Task<HttpResponseMessage> GetAll()
         {
@@ -31,22 +31,22 @@ namespace PointRecord.Models.Employees
             return client.GetAsync("find/" + id);
         }
 
-        public Task<HttpResponseMessage> Create(Employeees employees)
+        public Task<HttpResponseMessage> Create(StaffPoint staffPoint)
         {
             var client = new HttpClient();
             client.BaseAddress = new Uri(BASE_URL);
             client.DefaultRequestHeaders.Accept.Add(new
                 MediaTypeWithQualityHeaderValue("application/json"));
-            return client.PostAsJsonAsync("create", employees);
+            return client.PostAsJsonAsync("create", staffPoint);
         }
 
-        public Task<HttpResponseMessage> Update(long id, Employeees employees)
+        public Task<HttpResponseMessage> Update(long id, StaffPoint staffPoint)
         {
             var client = new HttpClient();
             client.BaseAddress = new Uri(BASE_URL);
             client.DefaultRequestHeaders.Accept.Add(new
                 MediaTypeWithQualityHeaderValue("application/json"));
-            return client.PutAsJsonAsync("update/" + id, employees);
+            return client.PutAsJsonAsync("update/" + id, staffPoint);
         }
 
         public Task<HttpResponseMessage> Delete(long id)

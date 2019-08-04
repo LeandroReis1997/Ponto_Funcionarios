@@ -9,9 +9,6 @@ namespace PointRecord.Controllers
     [Route("sectors")]
     public class SectorsController : Controller
     {
-        //[Route("")]
-        //[Route("~/")]
-        //[Route("index")]
         public async Task<IActionResult> Index()
         {
             var sectorsRestClient = new SectorsRestClient();

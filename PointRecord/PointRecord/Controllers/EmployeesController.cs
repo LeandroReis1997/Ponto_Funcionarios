@@ -11,14 +11,11 @@ namespace PointRecord.Controllers
     [Route("employees")]
     public class EmployeesController : Controller
     {
-        //[Route("")]
-        //[Route("~/")]
-        //[Route("index")]
         public async Task<IActionResult> Index()
         {
             var employeesRestClient = new EmployeesRestClient();
             var employees = await employeesRestClient.GetAll
-            ().Result.Content.ReadAsAsync<List<Employees>>();
+            ().Result.Content.ReadAsAsync<List<Employeees>>();
             return View(employees);
         }
 
@@ -27,7 +24,7 @@ namespace PointRecord.Controllers
         public async Task<IActionResult> Add()
         {
             var sectorRestClient = new SectorsRestClient();
-            var employees = new Employees();
+            var employees = new Employeees();
             ViewBag.sector = "Cadastre um novo setor no sistema...";
             employees.Dateregister = DateTime.Now;
             employees.Sector = await sectorRestClient.GetAllOrderBy
@@ -37,10 +34,10 @@ namespace PointRecord.Controllers
 
         [HttpPost]
         [Route("add")]
-        public async Task<IActionResult> Add(Employees Employees)
+        public async Task<IActionResult> Add(Employeees employees)
         {
-            var EmployeesRestClient = new EmployeesRestClient();
-            var create = await EmployeesRestClient.Create(Employees);
+            var employeesRestClient = new EmployeesRestClient();
+            var create = await employeesRestClient.Create(employees);
             return RedirectToAction("Index");
         }
 
@@ -48,20 +45,20 @@ namespace PointRecord.Controllers
         [Route("update/{id}")]
         public async Task<IActionResult> Update(long id)
         {
-            var EmployeesRestClient = new EmployeesRestClient();
+            var employeesRestClient = new EmployeesRestClient();
             var sector = new SectorsRestClient();
-            var Employees = await EmployeesRestClient.Find
-                (id).Result.Content.ReadAsAsync<Employees>();
-            Employees.Sector = await sector.GetAllOrderBy().Result.Content.ReadAsAsync<List<Sectors>>();
-            return View("Edit", Employees);
+            var employees = await employeesRestClient.Find
+                (id).Result.Content.ReadAsAsync<Employeees>();
+            employees.Sector = await sector.GetAllOrderBy().Result.Content.ReadAsAsync<List<Sectors>>();
+            return View("Edit", employees);
         }
 
         [HttpPost]
         [Route("update/{id}")]
-        public async Task<IActionResult> Update(long id, Employees Employees)
+        public async Task<IActionResult> Update(long id, Employeees employees)
         {
             var EmployeesRestClient = new EmployeesRestClient();
-            var update = await EmployeesRestClient.Update(id, Employees);
+            var update = await EmployeesRestClient.Update(id, employees);
             return RedirectToAction("Index");
         }
 

@@ -1,0 +1,55 @@
+﻿@model PointRecord.Models.StaffPoint.StaffPoint
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section>
+    Novo Registro
+
+    <form asp-controller="staffpoint" method="post" asp-action="add">
+
+        <h3 class="text-center">Data Atual</h3><br />
+        <div class="row">
+            <div class="col-md-12">
+                <label>Data Atual:</label>
+                <input type="text" class="form-control" asp-for="DateCurrent" />
+            </div>
+        </div>
+        <input type="text" class="form-control text-danger" asp-for="Hoursday"/>
+        <h5 class="text-center">Manhã</h5><br />
+        <div class="row">
+            <div class="col-md-6">
+                <label>Data Inicial:</label>
+                <input type="text" class="form-control" asp-for="StartTime1" />
+            </div>
+            <div class="col-md-6">
+                <label>Data Final:</label>
+                <input type="text" class="form-control" asp-for="EndTime1" />
+            </div>
+        </div>
+
+        <h5 class="text-center">Tarde</h5><br />
+        <div class="row">
+            <div class="col-md-6">
+                <label>Data Inicial:</label>
+                <input type="text" class="form-control" asp-for="StartTime2" />
+            </div>
+            <div class="col-md-6">
+                <label>Data Final:</label>
+                <input type="text" class="form-control" asp-for="EndTime2" />
+            </div>
+        </div>
+
+        <div class="row">
+            <label>Ativo: </label>
+            <input type="text" asp-for="EmployeesId" value="6" /><br />
+            <div class="col-md-12">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%;">salvar</button>
+
+    </form>
+</section>
