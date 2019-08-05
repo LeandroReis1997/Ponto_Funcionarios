@@ -69,7 +69,7 @@ namespace api.system.staffpoint.Controllers
         /// </summary>
         /// <param name="staffPoint"></param>
         /// <returns></returns>
-        [HttpPost("Create")]
+        [HttpPost("create")]
         [Produces(typeof(IEnumerable<StaffPoint>))]
         [SwaggerResponse((int)HttpStatusCode.Created, Description = "Inserido com sucesso", Type = typeof(StaffPoint))]
         [SwaggerResponse((int)HttpStatusCode.BadRequest, Description = "Requisição mal-formatada")]
@@ -84,8 +84,9 @@ namespace api.system.staffpoint.Controllers
             TimeSpan totalHoras1 = new TimeSpan((staffPoint.EndTime1 - staffPoint.StartTime1).Ticks);
             TimeSpan totalHoras2 = new TimeSpan((staffPoint.EndTime2 - staffPoint.StartTime2).Ticks);
 
-            //staffPoint.Hoursday = totalHoras1.ToString() + totalHoras2.ToString();
-            staffPoint.Hoursday = totalHoras1.ToString();
+            DateTime t3 = new DateTime((totalHoras1 + totalHoras2).Ticks);
+            
+            staffPoint.Hoursday = t3.ToShortTimeString().ToString();
 
             repository.add(staffPoint);
 
@@ -113,12 +114,20 @@ namespace api.system.staffpoint.Controllers
             if (_staffPoint == null)
                 return NotFound();
 
+
             _staffPoint.EmployeesId = staffPoint.EmployeesId;
             _staffPoint.DateCurrent = staffPoint.DateCurrent;
             _staffPoint.StartTime1 = staffPoint.StartTime1;
             _staffPoint.StartTime2 = staffPoint.StartTime2;
             _staffPoint.EndTime1 = staffPoint.EndTime1;
             _staffPoint.EndTime2 = staffPoint.EndTime2;
+
+            TimeSpan totalHoras1 = new TimeSpan((_staffPoint.EndTime1 - _staffPoint.StartTime1).Ticks);
+            TimeSpan totalHoras2 = new TimeSpan((_staffPoint.EndTime2 - _staffPoint.StartTime2).Ticks);
+
+            DateTime t3 = new DateTime((totalHoras1 + totalHoras2).Ticks);
+
+            _staffPoint.Hoursday = t3.ToShortTimeString().ToString();
 
             repository.update(_staffPoint);
             return CreatedAtRoute("GetStaffPoint", new { id = staffPoint.Id }, staffPoint);

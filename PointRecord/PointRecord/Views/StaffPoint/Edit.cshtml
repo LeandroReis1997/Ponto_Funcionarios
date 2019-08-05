@@ -6,18 +6,19 @@
 
 
 <section>
-    Novo Registro
 
-    <form asp-controller="staffpoint" method="post" asp-action="add">
-
-        <h3 class="text-center">Data Atual</h3><br />
+    @if (Model.EmployeesList.Count > 0)
+    {
+    <form asp-controller="staffpoint" method="post" asp-action="update">
+        <input type="hidden" asp-for="Id" />
+        <h3 class="text-center">Registro de Ponto</h3><br />
+        <h5 class="text-right"> Horas de Trabalho: <b class="text-danger">@Model.Hoursday</b></h5>
         <div class="row">
             <div class="col-md-12">
                 <label>Data Atual:</label>
-                <input type="text" class="form-control" asp-for="DateCurrent" />
+                <input type="text" class="form-control" asp-for="DateCurrent" /><br />
             </div>
         </div>
-        <input type="text" class="form-control text-danger" asp-for="Hoursday"/>
         <h5 class="text-center">Manhã</h5><br />
         <div class="row">
             <div class="col-md-6">
@@ -26,7 +27,7 @@
             </div>
             <div class="col-md-6">
                 <label>Data Final:</label>
-                <input type="text" class="form-control" asp-for="EndTime1" />
+                <input type="text" class="form-control" asp-for="EndTime1" /><br />
             </div>
         </div>
 
@@ -38,18 +39,29 @@
             </div>
             <div class="col-md-6">
                 <label>Data Final:</label>
-                <input type="text" class="form-control" asp-for="EndTime2" />
+                <input type="text" class="form-control" asp-for="EndTime2" /><br />
             </div>
         </div>
 
         <div class="row">
-            <label>Ativo: </label>
-            <input type="text" asp-for="EmployeesId" value="6" /><br />
             <div class="col-md-12">
+                @Html.LabelFor(m => m.EmployeesId, "Funcionário:")
+                @Html.DropDownListFor(m => m.EmployeesId, new SelectList(Model.EmployeesList, "Id", "Name", Model.EmployeesList.First().Id), "-- Selecione o Funcionário --", new { @class = "form-control", @id = "employee", @required = "true", @style = "padding-top: 3px;" })<br /><br />
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary" style="width:100%;">salvar</button>
+        <button type="submit" class="btn btn-primary" style="width:50%; margin-left:25%;">salvar</button>
 
     </form>
+    }
+    else
+    {
+        <h2 class="text-center text-danger"><b>Erro - Nenhum funcionário encontrado</b></h2><br />
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="text-center alert alert-danger">@ViewBag.employee</h3>
+            </div>
+        </div>
+    }
+
 </section>

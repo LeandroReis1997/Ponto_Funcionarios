@@ -30,7 +30,7 @@ namespace PointRecord.Controllers
             var employeesRestClient = new EmployeesRestClient();
             var staffpoint = new StaffPoint();
             ViewBag.employee = "Cadastre um novo funcionário no sistema...";
-            staffpoint.DateCurrent = DateTime.Now;
+            staffpoint.DateCurrent = AddBusinessDays(DateTime.Now, 1);
             staffpoint.StartTime1 = DateTime.Now;
             staffpoint.EmployeesList = await employeesRestClient.GetAll
             ().Result.Content.ReadAsAsync<List<Employeees>>();
@@ -50,8 +50,9 @@ namespace PointRecord.Controllers
         [Route("update/{id}")]
         public async Task<IActionResult> Update(long id)
         {
+            var Date = new StaffPoint();
             var staffpointRestClient = new StaffPointRestiClient();
-            var employees= new EmployeesRestClient();
+            var employees = new EmployeesRestClient();
             var staffpoint = await staffpointRestClient.Find
                 (id).Result.Content.ReadAsAsync<StaffPoint>();
             staffpoint.EmployeesList = await employees.GetAll().Result.Content.ReadAsAsync<List<Employeees>>();
@@ -73,6 +74,38 @@ namespace PointRecord.Controllers
             var staffpointRestClient = new StaffPointRestiClient();
             var delete = await staffpointRestClient.Delete(id);
             return RedirectToAction("Index");
+        }
+
+
+        private DateTime AddBusinessDays(DateTime date, int days)
+        {
+            if (days <= 0)
+            {
+                throw new ArgumentException("days cannot be negative", "days");
+            }
+            if (date.DayOfWeek == DayOfWeek.Saturday)
+            {
+                date = date.AddDays(2);
+                days -= 1;
+            }
+            else if (date.DayOfWeek == DayOfWeek.Sunday)
+            {
+                date = date.AddDays(1);
+                days -= 1;
+            }
+
+            if (days == 1) return date;
+
+            date = date.AddDays(days / 5 * 7);
+            int extraDays = days % 5;
+
+            if ((int)date.DayOfWeek + extraDays > 5)
+            {
+                extraDays += 2;
+            }
+            var newDate = date.AddDays(extraDays);
+
+            return newDate;
         }
     }
 }

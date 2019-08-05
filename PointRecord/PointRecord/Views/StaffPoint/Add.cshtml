@@ -9,54 +9,53 @@
 
     @if (Model.EmployeesList.Count > 0)
     {
-        <form asp-controller="staffpoint" method="post" asp-action="add">
-            Novo Registro
-
-            <h3 class="text-center">Registro de Ponto</h3><br />
-            <div class="row">
-                <div class="col-md-12">
-                    <label>Data Atual:</label>
-                    <input type="text" class="form-control" asp-for="DateCurrent" /><br />
-                </div>
+    <form asp-controller="staffpoint" method="post" asp-action="add">
+        <input type="hidden" asp-for="Id" />
+        <h3 class="text-center">Registro de Ponto</h3><br />
+        <div class="row">
+            <div class="col-md-12">
+                <label>Data Atual:</label>
+                <input type="text" class="form-control" asp-for="DateCurrent" /><br />
             </div>
-            <h5 class="text-center">Manhã</h5><br />
-            <div class="row">
-                <div class="col-md-6">
-                    <label>Data Inicial:</label>
-                    <input type="text" class="form-control" asp-for="StartTime1" />
-                </div>
-                <div class="col-md-6">
-                    <label>Data Final:</label>
-                    <input type="text" class="form-control" asp-for="EndTime1" /><br />
-                </div>
+        </div>
+        <h5 class="text-center">Manhã</h5><br />
+        <div class="row">
+            <div class="col-md-6">
+                <label>Data Inicial:</label>
+                <input type="text" class="form-control" asp-for="StartTime1" />
             </div>
-
-            <h5 class="text-center">Tarde</h5><br />
-            <div class="row">
-                <div class="col-md-6">
-                    <label>Data Inicial:</label>
-                    <input type="text" class="form-control" asp-for="StartTime2" />
-                </div>
-                <div class="col-md-6">
-                    <label>Data Final:</label>
-                    <input type="text" class="form-control" asp-for="EndTime2" /><br />
-                </div>
+            <div class="col-md-6">
+                <label>Data Final:</label>
+                <input type="text" class="form-control" asp-for="EndTime1" placeholder="00:00" /><br />
             </div>
+        </div>
 
-            <div class="row">
-                <div class="col-md-12">
-                        @Html.LabelFor(m => m.EmployeesId, "Funcionário:")
-                        @Html.DropDownListFor(m => m.EmployeesId, new SelectList(Model.EmployeesList, "Id", "Name", Model.EmployeesList.First().Id), "-- Selecione o Funcionário --", new { @class = "form-control", @id = "employee", @required = "true", @style = "padding-top: 3px;" })<br /><br />
-                </div>
+        <h5 class="text-center">Tarde</h5><br />
+        <div class="row">
+            <div class="col-md-6">
+                <label>Data Inicial:</label>
+                <input type="text" class="form-control" asp-for="StartTime2" value="00:00" />
             </div>
+            <div class="col-md-6">
+                <label>Data Final:</label>
+                <input type="text" class="form-control" asp-for="EndTime2" value="00:00" /><br />
+            </div>
+        </div>
 
-            <button type="submit" class="btn btn-primary" style="width:50%; margin-left:25%;">salvar</button>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.EmployeesId, "Funcionário:")
+                @Html.DropDownListFor(m => m.EmployeesId, new SelectList(Model.EmployeesList, "Id", "Name", Model.EmployeesList.First().Id), "-- Selecione o Funcionário --", new { @class = "form-control", @id = "employee", @required = "true", @style = "padding-top: 3px;" })<br /><br />
+            </div>
+        </div>
 
-        </form>
+        <button type="submit" class="btn btn-primary" style="width:50%; margin-left:25%;">salvar</button>
+
+    </form>
     }
     else
     {
-        <h2 class="text-center text-danger"><b>Erro - Nenhum setor encontrado</b></h2><br />
+        <h2 class="text-center text-danger"><b>Erro - Nenhum funcionário encontrado</b></h2><br />
         <div class="row">
             <div class="col-md-12">
                 <h3 class="text-center alert alert-danger">@ViewBag.employee</h3>

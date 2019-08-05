@@ -17,23 +17,21 @@ namespace PointRecord.Models.StaffPoint
         public DateTime? DateCurrent { get; set; }
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
-        [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
+        [DataType(DataType.Time, ErrorMessage = "Data em formato inválido")]
         public DateTime? StartTime1 { get; set; }
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
-        [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
+        [DataType(DataType.Time, ErrorMessage = "Data em formato inválido")]
         public DateTime? StartTime2 { get; set; }
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
-        [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
+        [DataType(DataType.Time, ErrorMessage = "Data em formato inválido")]
         public DateTime? EndTime1 { get; set; }
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
-        [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
+        [DataType(DataType.Time, ErrorMessage = "Data em formato inválido")]
         public DateTime? EndTime2 { get; set; }
-
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
-        [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
+        
         public string Hoursday { get; set; }
     }
 }
