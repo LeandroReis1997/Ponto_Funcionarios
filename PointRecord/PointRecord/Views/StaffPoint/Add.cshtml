@@ -15,18 +15,18 @@
         <div class="row">
             <div class="col-md-12">
                 <label>Data Atual:</label>
-                <input type="text" class="form-control" asp-for="DateCurrent" /><br />
+                <input type="text" class="form-control" asp-for="DateCurrent" readonly/><br />
             </div>
         </div>
         <h5 class="text-center">Manhã</h5><br />
         <div class="row">
             <div class="col-md-6">
                 <label>Data Inicial:</label>
-                <input type="text" class="form-control" asp-for="StartTime1" />
+                <input type="time" class="form-control" asp-for="StartTime1" />
             </div>
             <div class="col-md-6">
                 <label>Data Final:</label>
-                <input type="text" class="form-control" asp-for="EndTime1" placeholder="00:00" /><br />
+                <input type="time" class="form-control" asp-for="EndTime1" placeholder="00:00" /><br />
             </div>
         </div>
 
@@ -34,11 +34,11 @@
         <div class="row">
             <div class="col-md-6">
                 <label>Data Inicial:</label>
-                <input type="text" class="form-control" asp-for="StartTime2" value="00:00" />
+                <input type="time" class="form-control" asp-for="StartTime2" value="00:00" />
             </div>
             <div class="col-md-6">
                 <label>Data Final:</label>
-                <input type="text" class="form-control" asp-for="EndTime2" value="00:00" /><br />
+                <input type="time" class="form-control" asp-for="EndTime2" value="00:00" /><br />
             </div>
         </div>
 
