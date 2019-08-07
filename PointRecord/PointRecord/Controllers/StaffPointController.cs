@@ -11,6 +11,7 @@ namespace PointRecord.Controllers
     [Route("staffpoint")]
     public class StaffPointController : Controller
     {
+        #region Read
         public async Task<IActionResult> Index()
         {
             var staffpointRestClient = new StaffPointRestiClient();
@@ -18,6 +19,9 @@ namespace PointRecord.Controllers
             ().Result.Content.ReadAsAsync<List<StaffPoints>>();
             return View(staffpoint);
         }
+        #endregion
+
+        #region Create
 
         [HttpGet]
         [Route("add")]
@@ -41,7 +45,9 @@ namespace PointRecord.Controllers
             var create = await staffpointRestClient.Create(staffPoint);
             return RedirectToAction("Index");
         }
+        #endregion
 
+        #region Update
         [HttpGet]
         [Route("update/{id}")]
         public async Task<IActionResult> Update(long id)
@@ -62,7 +68,9 @@ namespace PointRecord.Controllers
             var update = await staffpointRestClient.Update(id, staffPoint);
             return RedirectToAction("Index");
         }
+        #endregion
 
+        #region Delete
         [Route("delete/{id}")]
         public async Task<IActionResult> Delete(long id)
         {
@@ -70,8 +78,16 @@ namespace PointRecord.Controllers
             var delete = await staffpointRestClient.Delete(id);
             return RedirectToAction("Index");
         }
+        #endregion
 
+        #region private methods
 
+        /// <summary>
+        /// Configuração para dias úteis
+        /// </summary>
+        /// <param name="date"></param>
+        /// <param name="days"></param>
+        /// <returns></returns>
         private DateTime AddBusinessDays(DateTime date, int days)
         {
             if (days <= 0)
@@ -102,5 +118,6 @@ namespace PointRecord.Controllers
 
             return newDate;
         }
+        #endregion
     }
 }
