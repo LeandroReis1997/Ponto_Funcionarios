@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PointRecord.Models.StaffPoint
 {
-    public class StaffPoint
+    public class StaffPoints
     {
         public int Id { get; set; }
         public int? EmployeesId { get; set; }
@@ -33,5 +33,6 @@ namespace PointRecord.Models.StaffPoint
         public DateTime? EndTime2 { get; set; }
         
         public string Hoursday { get; set; }
+        public TimeSpan? hours_month { get; set; }
     }
 }

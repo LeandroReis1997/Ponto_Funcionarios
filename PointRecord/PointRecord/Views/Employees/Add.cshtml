@@ -9,6 +9,10 @@
     @if (Model.Sector.Count > 0)
     {
         <form asp-controller="employees" method="post" asp-action="add">
+            <h1 class="text-center" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
+                Cadastro de Funcionários
+            </h1><br />
+
             <div class="row">
                 <div class="col-md-4">
                     <label>Name:</label>
@@ -16,12 +20,12 @@
                 </div>
                 <div class="col-md-4">
                     <label>CPF:</label>
-                    <input type="text" class="form-control" asp-for="CPF" id="cpf" required/>
+                    <input type="text" class="form-control" asp-for="CPF" id="cpf" required />
                 </div>
                 <div class="col-md-4">
 
                     <label>CEP:</label>
-                    <input type="text" class="form-control" asp-for="CEP" id="cep" onblur="pesquisacep(this.value);"  required/>
+                    <input type="text" class="form-control" asp-for="CEP" id="cep" onblur="pesquisacep(this.value);" required />
 
                 </div>
             </div>
@@ -33,7 +37,7 @@
 
                 <div class="col-md-4">
                     <label>Endereço:</label>
-                    <input type="text" class="form-control" asp-for="_Address" id="rua" required/>
+                    <input type="text" class="form-control" asp-for="_Address" id="rua" required />
                 </div>
 
                 <div class="col-md-4">
@@ -46,24 +50,24 @@
             <div class="row">
                 <div class="col-md-4">
                     <label>Estado:</label>
-                    <input type="text" class="form-control" asp-for="_State" id="uf" required/>
+                    <input type="text" class="form-control" asp-for="_State" id="uf" required />
                 </div>
 
                 <div class="col-md-4">
                     <label>Bairro:</label>
-                    <input type="text" class="form-control" asp-for="neighborhood" id="bairro" required/>
+                    <input type="text" class="form-control" asp-for="neighborhood" id="bairro" required />
                 </div>
 
                 <div class="col-md-4">
                     <label>Data Nascimento:</label>
-                    <input type="text" class="form-control" asp-for="Datebirth" id="date" required/>
+                    <input type="text" class="form-control" asp-for="Datebirth" id="date" required />
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6">
                     <label>Data Cadastro:</label>
-                    <input type="text" class="form-control" asp-for="Dateregister" required/>
+                    <input type="text" class="form-control" asp-for="Dateregister" required />
                 </div>
 
                 <div class="col-md-6">

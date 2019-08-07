@@ -5,9 +5,10 @@
 }
 
 <section>
-    Novo Setor
-
     <form asp-controller="sectors" method="post" asp-action="add">
+        <h1 class="text-center" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
+            Cadastro de Setores
+        </h1><br />
 
         <div class="row">
             <div class="col-md-6">
@@ -17,8 +18,8 @@
         </div>
 
         <div class="row">
-                <label>Ativo: </label>
-                <input type="checkbox" asp-for="Active" /><br />
+            <label>Ativo: </label>
+            <input type="checkbox" asp-for="Active" /><br />
             <div class="col-md-12">
             </div>
         </div>

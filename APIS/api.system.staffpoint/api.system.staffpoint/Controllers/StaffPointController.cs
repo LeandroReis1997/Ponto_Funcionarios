@@ -85,7 +85,18 @@ namespace api.system.staffpoint.Controllers
             TimeSpan totalHoras2 = new TimeSpan((staffPoint.EndTime2 - staffPoint.StartTime2).Ticks);
 
             DateTime t3 = new DateTime((totalHoras1 + totalHoras2).Ticks);
-            
+
+            var getAll = repository.GetAll();
+            var hours = new TimeSpan();
+
+            foreach (var item in getAll)
+            {
+                var tarde = item.EndTime2 - item.StartTime2;
+                var manha = item.EndTime1 - item.StartTime1;
+                hours += (manha + tarde);
+            }
+
+            staffPoint.hours_month = hours.ToString();
             staffPoint.Hoursday = t3.ToShortTimeString().ToString();
 
             repository.add(staffPoint);

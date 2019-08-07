@@ -31,7 +31,7 @@ namespace PointRecord.Models.StaffPoint
             return client.GetAsync("find/" + id);
         }
 
-        public Task<HttpResponseMessage> Create(StaffPoint staffPoint)
+        public Task<HttpResponseMessage> Create(StaffPoints staffPoint)
         {
             var client = new HttpClient();
             client.BaseAddress = new Uri(BASE_URL);
@@ -40,7 +40,7 @@ namespace PointRecord.Models.StaffPoint
             return client.PostAsJsonAsync("create", staffPoint);
         }
 
-        public Task<HttpResponseMessage> Update(long id, StaffPoint staffPoint)
+        public Task<HttpResponseMessage> Update(long id, StaffPoints staffPoint)
         {
             var client = new HttpClient();
             client.BaseAddress = new Uri(BASE_URL);

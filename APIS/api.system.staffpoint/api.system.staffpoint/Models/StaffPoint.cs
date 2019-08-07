@@ -8,11 +8,12 @@ namespace api.system.staffpoint.Models
     {
         public int Id { get; set; }
         public int EmployeesId { get; set; }
-        public DateTime DateCurrent  { get; set; }
+        public DateTime DateCurrent { get; set; }
         public DateTime StartTime1 { get; set; }
         public DateTime StartTime2 { get; set; }
         public DateTime EndTime1 { get; set; }
         public DateTime EndTime2 { get; set; }
         public string Hoursday { get; set; }
-    }
+        public string hours_month { get; set; }
+}
 }

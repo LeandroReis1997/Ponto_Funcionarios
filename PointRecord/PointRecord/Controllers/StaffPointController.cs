@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -12,14 +11,11 @@ namespace PointRecord.Controllers
     [Route("staffpoint")]
     public class StaffPointController : Controller
     {
-        [Route("")]
-        [Route("~/")]
-        [Route("index")]
         public async Task<IActionResult> Index()
         {
             var staffpointRestClient = new StaffPointRestiClient();
             var staffpoint = await staffpointRestClient.GetAll
-            ().Result.Content.ReadAsAsync<List<StaffPoint>>();
+            ().Result.Content.ReadAsAsync<List<StaffPoints>>();
             return View(staffpoint);
         }
 
@@ -28,7 +24,7 @@ namespace PointRecord.Controllers
         public async Task<IActionResult> Add()
         {
             var employeesRestClient = new EmployeesRestClient();
-            var staffpoint = new StaffPoint();
+            var staffpoint = new StaffPoints();
             ViewBag.employee = "Cadastre um novo funcionário no sistema...";
             staffpoint.DateCurrent = AddBusinessDays(DateTime.Now, 1);
             staffpoint.StartTime1 = DateTime.Now;
@@ -39,7 +35,7 @@ namespace PointRecord.Controllers
 
         [HttpPost]
         [Route("add")]
-        public async Task<IActionResult> Add(StaffPoint staffPoint)
+        public async Task<IActionResult> Add(StaffPoints staffPoint)
         {
             var staffpointRestClient = new StaffPointRestiClient();
             var create = await staffpointRestClient.Create(staffPoint);
@@ -50,18 +46,17 @@ namespace PointRecord.Controllers
         [Route("update/{id}")]
         public async Task<IActionResult> Update(long id)
         {
-            var Date = new StaffPoint();
             var staffpointRestClient = new StaffPointRestiClient();
             var employees = new EmployeesRestClient();
             var staffpoint = await staffpointRestClient.Find
-                (id).Result.Content.ReadAsAsync<StaffPoint>();
+                (id).Result.Content.ReadAsAsync<StaffPoints>();
             staffpoint.EmployeesList = await employees.GetAll().Result.Content.ReadAsAsync<List<Employeees>>();
             return View("Edit", staffpoint);
         }
 
         [HttpPost]
         [Route("update/{id}")]
-        public async Task<IActionResult> Update(long id, StaffPoint staffPoint)
+        public async Task<IActionResult> Update(long id, StaffPoints staffPoint)
         {
             var staffpointRestClient = new StaffPointRestiClient();
             var update = await staffpointRestClient.Update(id, staffPoint);

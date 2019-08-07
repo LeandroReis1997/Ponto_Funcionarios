@@ -1,4 +1,4 @@
-﻿@model PointRecord.Models.StaffPoint.StaffPoint
+﻿@model PointRecord.Models.StaffPoint.StaffPoints
 @{
     ViewData["Title"] = "Add";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -23,11 +23,11 @@
         <div class="row">
             <div class="col-md-6">
                 <label>Data Inicial:</label>
-                <input type="time" class="form-control" asp-for="StartTime1" />
+                <input type="time" class="form-control" asp-for="StartTime1" required/>
             </div>
             <div class="col-md-6">
                 <label>Data Final:</label>
-                <input type="time" class="form-control" asp-for="EndTime1" /><br />
+                <input type="time" class="form-control" asp-for="EndTime1" required/><br />
             </div>
         </div>
 
@@ -35,11 +35,11 @@
         <div class="row">
             <div class="col-md-6">
                 <label>Data Inicial:</label>
-                <input type="time" class="form-control" asp-for="StartTime2" />
+                <input type="time" class="form-control" asp-for="StartTime2" required/>
             </div>
             <div class="col-md-6">
                 <label>Data Final:</label>
-                <input type="time" class="form-control" asp-for="EndTime2" /><br />
+                <input type="time" class="form-control" asp-for="EndTime2" required/><br />
             </div>
         </div>
 

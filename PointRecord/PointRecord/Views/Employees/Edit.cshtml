@@ -7,6 +7,10 @@
 <section>
 
     <form asp-controller="employees" method="post" asp-action="update">
+        <h1 class="text-center" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
+            Cadastro de Funcionários
+        </h1><br />
+        <h5 class="text-right"> Horas de Trabalho: <b class="text-danger">@Model.StaffPoint.hours_month</b></h5>
         <div class="row">
             <div class="col-md-4">
                 <label>Name:</label>

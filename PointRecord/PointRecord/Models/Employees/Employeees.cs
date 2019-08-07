@@ -3,6 +3,7 @@ using PointRecord.Models.Sector;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
+using PointRecord.Models.StaffPoint;
 
 namespace PointRecord.Models.Employees
 {
@@ -27,5 +28,6 @@ namespace PointRecord.Models.Employees
         public int? SectorId { get; set; }
         public Sectors Sectors { get; set; }
         public List<Sectors> Sector { get; set; }
+        public StaffPoints StaffPoint { get; set; }
     }
 }

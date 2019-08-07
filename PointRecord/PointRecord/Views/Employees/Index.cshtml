@@ -4,12 +4,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>
+<h1 class="text-center" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
     Lista de Funcionários
-</h1>
+</h1><br />
 
-@Html.ActionLink("Novo Funcionário", "add", "employees")
 
+<a asp-controller="employees" asp-action="add" class="btn btn-primary btn-lg pull-right"><i class="fas fa-plus-circle"></i> Novo</a><br /><br />
 
 <table class="table table-hover">
     <thead>
