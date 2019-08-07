@@ -11,6 +11,7 @@ namespace PointRecord.Controllers
     [Route("employees")]
     public class EmployeesController : Controller
     {
+        #region Read
         public async Task<IActionResult> Index()
         {
             var employeesRestClient = new EmployeesRestClient();
@@ -18,7 +19,9 @@ namespace PointRecord.Controllers
             ().Result.Content.ReadAsAsync<List<Employeees>>();
             return View(employees);
         }
+        #endregion
 
+        #region Create
         [HttpGet]
         [Route("add")]
         public async Task<IActionResult> Add()
@@ -40,7 +43,9 @@ namespace PointRecord.Controllers
             var create = await employeesRestClient.Create(employees);
             return RedirectToAction("Index");
         }
+        #endregion
 
+        #region Update
         [HttpGet]
         [Route("update/{id}")]
         public async Task<IActionResult> Update(long id)
@@ -61,6 +66,9 @@ namespace PointRecord.Controllers
             var update = await EmployeesRestClient.Update(id, employees);
             return RedirectToAction("Index");
         }
+        #endregion
+
+        #region Delete
 
         [Route("delete/{id}")]
         public async Task<IActionResult> Delete(long id)
@@ -69,5 +77,6 @@ namespace PointRecord.Controllers
             var delete = await EmployeesRestClient.Delete(id);
             return RedirectToAction("Index");
         }
+        #endregion
     }
 }

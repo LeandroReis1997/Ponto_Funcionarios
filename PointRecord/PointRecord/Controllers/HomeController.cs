@@ -5,6 +5,7 @@ namespace PointRecord.Controllers
     [Route("home")]
     public class HomeController : Controller
     {
+        #region Read
         [Route("")]
         [Route("~/")]
         [Route("index")]
@@ -12,5 +13,6 @@ namespace PointRecord.Controllers
         {
             return View();
         }
+        #endregion
     }
 }
