@@ -21,7 +21,7 @@ namespace api.system.sector.Repository
 
         public Sector Find(long id)
         {
-            return _context.Sectors.FirstOrDefault(v => v.Id == id);
+            return _context.Sectors.FirstOrDefault(v => v.id == id);
         }
 
         public IEnumerable<Sector> GetAll()
@@ -31,12 +31,12 @@ namespace api.system.sector.Repository
 
         public IEnumerable<Sector> GetAllOrderBy()
         {
-            return _context.Sectors.Where(x => x.Active == true).ToList();
+            return _context.Sectors.Where(x => x.active == true).ToList();
         }
 
         public void remover(long id)
         {
-            var entity = _context.Sectors.First(w => w.Id == id);
+            var entity = _context.Sectors.First(w => w.id == id);
             _context.Sectors.Remove(entity);
             _context.SaveChanges();
         }

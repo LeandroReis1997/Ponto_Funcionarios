@@ -7,32 +7,32 @@ namespace PointRecord.Models.StaffPoint
 {
     public class StaffPoints
     {
-        public int Id { get; set; }
-        public int? EmployeesId { get; set; }
+        public int id { get; set; }
+        public int? employeesid { get; set; }
         public Employeees Employees { get; set; }
         public List<Employeees> EmployeesList { get; set; }
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
-        public DateTime? DateCurrent { get; set; }
+        public DateTime? date_current { get; set; }
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
         [DataType(DataType.Time, ErrorMessage = "Data em formato inválido")]
-        public DateTime? StartTime1 { get; set; }
+        public DateTime? start_time1 { get; set; }
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
         [DataType(DataType.Time, ErrorMessage = "Data em formato inválido")]
-        public DateTime? StartTime2 { get; set; }
+        public DateTime? start_time2 { get; set; }
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
         [DataType(DataType.Time, ErrorMessage = "Data em formato inválido")]
-        public DateTime? EndTime1 { get; set; }
+        public DateTime? end_time1 { get; set; }
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
         [DataType(DataType.Time, ErrorMessage = "Data em formato inválido")]
-        public DateTime? EndTime2 { get; set; }
+        public DateTime? end_time2 { get; set; }
         
-        public string Hoursday { get; set; }
+        public string hours_day { get; set; }
         public TimeSpan? hours_month { get; set; }
     }
 }

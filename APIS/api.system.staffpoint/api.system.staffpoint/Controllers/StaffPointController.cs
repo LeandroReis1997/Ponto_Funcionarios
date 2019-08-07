@@ -81,8 +81,8 @@ namespace api.system.staffpoint.Controllers
             if (staffPoint == null)
                 return BadRequest();
 
-            TimeSpan totalHoras1 = new TimeSpan((staffPoint.EndTime1 - staffPoint.StartTime1).Ticks);
-            TimeSpan totalHoras2 = new TimeSpan((staffPoint.EndTime2 - staffPoint.StartTime2).Ticks);
+            TimeSpan totalHoras1 = new TimeSpan((staffPoint.end_time1 - staffPoint.start_time1).Ticks);
+            TimeSpan totalHoras2 = new TimeSpan((staffPoint.end_time2 - staffPoint.start_time2).Ticks);
 
             DateTime t3 = new DateTime((totalHoras1 + totalHoras2).Ticks);
 
@@ -91,17 +91,17 @@ namespace api.system.staffpoint.Controllers
 
             foreach (var item in getAll)
             {
-                var tarde = item.EndTime2 - item.StartTime2;
-                var manha = item.EndTime1 - item.StartTime1;
+                var tarde = item.end_time2 - item.start_time2;
+                var manha = item.end_time1 - item.start_time1;
                 hours += (manha + tarde);
             }
 
             staffPoint.hours_month = hours.ToString();
-            staffPoint.Hoursday = t3.ToShortTimeString().ToString();
+            staffPoint.hours_day = t3.ToShortTimeString().ToString();
 
             repository.add(staffPoint);
 
-            return CreatedAtRoute("GetStaffPoint", new { id = staffPoint.Id }, staffPoint);
+            return CreatedAtRoute("GetStaffPoint", new { id = staffPoint.id }, staffPoint);
         }
 
         #endregion
@@ -117,7 +117,7 @@ namespace api.system.staffpoint.Controllers
         [SwaggerResponse((int)HttpStatusCode.InternalServerError, Description = "Erro na API")]
         public IActionResult Update(long id, [FromBody] StaffPoint staffPoint)
         {
-            if (staffPoint == null || staffPoint.Id != id)
+            if (staffPoint == null || staffPoint.id != id)
                 return BadRequest();
 
             var _staffPoint = repository.Find(id);
@@ -126,22 +126,22 @@ namespace api.system.staffpoint.Controllers
                 return NotFound();
 
 
-            _staffPoint.EmployeesId = staffPoint.EmployeesId;
-            _staffPoint.DateCurrent = staffPoint.DateCurrent;
-            _staffPoint.StartTime1 = staffPoint.StartTime1;
-            _staffPoint.StartTime2 = staffPoint.StartTime2;
-            _staffPoint.EndTime1 = staffPoint.EndTime1;
-            _staffPoint.EndTime2 = staffPoint.EndTime2;
+            _staffPoint.employeesid = staffPoint.employeesid;
+            _staffPoint.date_current = staffPoint.date_current;
+            _staffPoint.start_time1 = staffPoint.start_time1;
+            _staffPoint.start_time2 = staffPoint.start_time2;
+            _staffPoint.end_time1 = staffPoint.end_time1;
+            _staffPoint.end_time2 = staffPoint.end_time2;
 
-            TimeSpan totalHoras1 = new TimeSpan((_staffPoint.EndTime1 - _staffPoint.StartTime1).Ticks);
-            TimeSpan totalHoras2 = new TimeSpan((_staffPoint.EndTime2 - _staffPoint.StartTime2).Ticks);
+            TimeSpan totalHoras1 = new TimeSpan((_staffPoint.end_time1 - _staffPoint.start_time1).Ticks);
+            TimeSpan totalHoras2 = new TimeSpan((_staffPoint.end_time2 - _staffPoint.start_time2).Ticks);
 
             DateTime t3 = new DateTime((totalHoras1 + totalHoras2).Ticks);
 
-            _staffPoint.Hoursday = t3.ToShortTimeString().ToString();
+            _staffPoint.hours_day = t3.ToShortTimeString().ToString();
 
             repository.update(_staffPoint);
-            return CreatedAtRoute("GetStaffPoint", new { id = staffPoint.Id }, staffPoint);
+            return CreatedAtRoute("GetStaffPoint", new { id = staffPoint.id }, staffPoint);
         }
         #endregion
 
@@ -159,7 +159,7 @@ namespace api.system.staffpoint.Controllers
                 return NotFound();
 
             repository.remover(id);
-            return CreatedAtRoute("GetStaffPoint", new { id = staffPoint.Id }, staffPoint);
+            return CreatedAtRoute("GetStaffPoint", new { id = staffPoint.id }, staffPoint);
         }
         #endregion
     }

@@ -22,7 +22,7 @@ namespace api.system.staffpoint.Repository
 
         public StaffPoint Find(long id)
         {
-            return _context.StaffPoints.FirstOrDefault(x => x.Id == id);
+            return _context.StaffPoints.FirstOrDefault(x => x.id == id);
         }
 
         public IEnumerable<StaffPoint> GetAll()
@@ -32,7 +32,7 @@ namespace api.system.staffpoint.Repository
 
         public void remover(long id)
         {
-            var entity = _context.StaffPoints.FirstOrDefault(x => x.Id == id);
+            var entity = _context.StaffPoints.FirstOrDefault(x => x.id == id);
             _context.StaffPoints.Remove(entity);
             _context.SaveChanges();
         }

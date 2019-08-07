@@ -10,23 +10,23 @@
     @if (Model.EmployeesList.Count > 0)
     {
     <form asp-controller="staffpoint" method="post" asp-action="add">
-        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="id" />
         <h3 class="text-center">Registro de Ponto</h3><br />
         <div class="row">
             <div class="col-md-12">
                 <label>Data Atual:</label>
-                <input type="text" class="form-control" asp-for="DateCurrent" readonly/><br />
+                <input type="text" class="form-control" asp-for="date_current" readonly/><br />
             </div>
         </div>
         <h5 class="text-center">Manhã</h5><br />
         <div class="row">
             <div class="col-md-6">
                 <label>Data Inicial:</label>
-                <input type="time" class="form-control" asp-for="StartTime1" />
+                <input type="time" class="form-control" asp-for="start_time1" />
             </div>
             <div class="col-md-6">
                 <label>Data Final:</label>
-                <input type="time" class="form-control" asp-for="EndTime1" placeholder="00:00" required/><br />
+                <input type="time" class="form-control" asp-for="end_time1" placeholder="00:00" required/><br />
             </div>
         </div>
 
@@ -34,18 +34,18 @@
         <div class="row">
             <div class="col-md-6">
                 <label>Data Inicial:</label>
-                <input type="time" class="form-control" asp-for="StartTime2" placeholder="00:00" required />
+                <input type="time" class="form-control" asp-for="start_time2" placeholder="00:00" required />
             </div>
             <div class="col-md-6">
                 <label>Data Final:</label>
-                <input type="time" class="form-control" asp-for="EndTime2" placeholder="00:00" required /><br />
+                <input type="time" class="form-control" asp-for="end_time2" placeholder="00:00" required /><br />
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-12">
-                @Html.LabelFor(m => m.EmployeesId, "Funcionário:")
-                @Html.DropDownListFor(m => m.EmployeesId, new SelectList(Model.EmployeesList, "Id", "Name", Model.EmployeesList.First().Id), "-- Selecione o Funcionário --", new { @class = "form-control", @id = "employee", @required = "true", @style = "padding-top: 3px;" })<br /><br />
+                @Html.LabelFor(m => m.employeesid, "Funcionário:")
+                @Html.DropDownListFor(m => m.employeesid, new SelectList(Model.EmployeesList, "id", "name", Model.EmployeesList.First().id), "-- Selecione o Funcionário --", new { @class = "form-control", @id = "employee", @required = "true", @style = "padding-top: 3px;" })<br /><br />
             </div>
         </div>
 

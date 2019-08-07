@@ -21,7 +21,7 @@ namespace api.system.employees.Repository
 
         public Employees Find(long id)
         {
-            return _context.Employees.FirstOrDefault(q => q.Id == id);
+            return _context.Employees.FirstOrDefault(q => q.id == id);
         }
 
         public IEnumerable<Employees> GetAll()
@@ -31,7 +31,7 @@ namespace api.system.employees.Repository
 
         public void remove(long id)
         {
-            var entity = _context.Employees.FirstOrDefault(d => d.Id == id);
+            var entity = _context.Employees.FirstOrDefault(d => d.id == id);
             _context.Employees.Remove(entity);
             _context.SaveChanges();
         }

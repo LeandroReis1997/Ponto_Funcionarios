@@ -10,37 +10,36 @@
         <h1 class="text-center" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
             Cadastro de Funcionários
         </h1><br />
-        <h5 class="text-right"> Horas de Trabalho: <b class="text-danger">@Model.StaffPoint.hours_month</b></h5>
         <div class="row">
             <div class="col-md-4">
                 <label>Name:</label>
-                <input type="text" class="form-control" asp-for="Name" required />
+                <input type="text" class="form-control" asp-for="name" required />
             </div>
             <div class="col-md-4">
                 <label>CPF:</label>
-                <input type="text" class="form-control" asp-for="CPF" id="cpf" required />
+                <input type="text" class="form-control" asp-for="cpf" id="cpf" required />
             </div>
             <div class="col-md-4">
 
                 <label>CEP:</label>
-                <input type="text" class="form-control" asp-for="CEP" id="cep" onblur="pesquisacep(this.value);" required />
+                <input type="text" class="form-control" asp-for="cep" id="cep" onblur="pesquisacep(this.value);" required />
 
             </div>
         </div>
         <div class="row">
             <div class="col-md-4">
                 <label>Telefone:</label>
-                <input type="text" class="form-control" asp-for="Telephone" id="tel" required />
+                <input type="text" class="form-control" asp-for="telephone" id="tel" required />
             </div>
 
             <div class="col-md-4">
                 <label>Endereço:</label>
-                <input type="text" class="form-control" asp-for="_Address" id="rua" required />
+                <input type="text" class="form-control" asp-for="address" id="rua" required />
             </div>
 
             <div class="col-md-4">
                 <label>Cidade:</label>
-                <input type="text" class="form-control" asp-for="City" id="cidade" required />
+                <input type="text" class="form-control" asp-for="city" id="cidade" required />
             </div>
 
         </div>
@@ -48,7 +47,7 @@
         <div class="row">
             <div class="col-md-4">
                 <label>Estado:</label>
-                <input type="text" class="form-control" asp-for="_State" id="uf" required />
+                <input type="text" class="form-control" asp-for="state" id="uf" required />
             </div>
 
             <div class="col-md-4">
@@ -58,19 +57,19 @@
 
             <div class="col-md-4">
                 <label>Data Nascimento:</label>
-                <input type="text" class="form-control" asp-for="Datebirth" id="date" required />
+                <input type="text" class="form-control" asp-for="datebirth" id="date" required />
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-6">
                 <label>Data Cadastro:</label>
-                <input type="text" class="form-control" asp-for="Dateregister" required />
+                <input type="text" class="form-control" asp-for="dateregister" required />
             </div>
 
             <div class="col-md-6">
-                @Html.LabelFor(m => m.SectorId, "Setor")
-                @Html.DropDownListFor(m => m.SectorId, new SelectList(Model.Sector, "Id", "Name", Model.Sector.First().Id), "-- Selecione o Setor --", new { @class = "form-control", @id = "sector", @required = "true", @style = "padding-top: 3px;" })<br />
+                @Html.LabelFor(m => m.sectorId, "Setor")
+                @Html.DropDownListFor(m => m.sectorId, new SelectList(Model.Sector, "id", "name", Model.Sector.First().id), "-- Selecione o Setor --", new { @class = "form-control", @id = "sector", @required = "true", @style = "padding-top: 3px;" })<br />
             </div>
         </div>
         <button type="submit" class="btn btn-primary" style="width:100%;">salvar</button>

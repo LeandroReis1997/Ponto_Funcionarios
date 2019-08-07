@@ -5,13 +5,13 @@ namespace PointRecord.Models.Sector
     [Table("Sector")]
     public class Sectors
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public bool Active { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public bool active { get; set; }
 
         public Sectors()
         {
-            this.Active = true;
+            this.active = true;
         }
     }
 }

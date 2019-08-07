@@ -25,14 +25,14 @@
     {
         <tbody>
             <tr>
-                <td>@item.Name</td>
-                <td>@item.City</td>
-                <td>@item.Telephone</td>
-                <td>@item._State</td>
+                <td>@item.name</td>
+                <td>@item.city</td>
+                <td>@item.telephone</td>
+                <td>@item.state</td>
 
                 <td>
-                    <a asp-controller="employees" asp-action="update" asp-route-id="@item.Id" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                    <a asp-controller="employees" asp-action="delete" asp-route-id="@item.Id" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                    <a asp-controller="employees" asp-action="update" asp-route-id="@item.id" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                    <a asp-controller="employees" asp-action="delete" asp-route-id="@item.id" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
                 </td>
             </tr>
         </tbody>

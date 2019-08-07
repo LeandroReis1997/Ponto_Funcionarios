@@ -26,8 +26,8 @@ namespace PointRecord.Controllers
             var employeesRestClient = new EmployeesRestClient();
             var staffpoint = new StaffPoints();
             ViewBag.employee = "Cadastre um novo funcionário no sistema...";
-            staffpoint.DateCurrent = AddBusinessDays(DateTime.Now, 1);
-            staffpoint.StartTime1 = DateTime.Now;
+            staffpoint.date_current = AddBusinessDays(DateTime.Now, 1);
+            staffpoint.start_time1 = DateTime.Now;
             staffpoint.EmployeesList = await employeesRestClient.GetAll
             ().Result.Content.ReadAsAsync<List<Employeees>>();
             return View("Add", staffpoint);

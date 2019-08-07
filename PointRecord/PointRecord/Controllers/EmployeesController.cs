@@ -26,7 +26,7 @@ namespace PointRecord.Controllers
             var sectorRestClient = new SectorsRestClient();
             var employees = new Employeees();
             ViewBag.sector = "Cadastre um novo setor no sistema...";
-            employees.Dateregister = DateTime.Now;
+            employees.dateregister = DateTime.Now;
             employees.Sector = await sectorRestClient.GetAllOrderBy
             ().Result.Content.ReadAsAsync<List<Sectors>>();
             return View("Add", employees);

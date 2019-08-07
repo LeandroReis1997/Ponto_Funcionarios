@@ -66,7 +66,7 @@ namespace api.system.employees.Controllers
 
             repository.add(employees);
 
-            return CreatedAtRoute("GetEmployees", new { id = employees.Id }, employees);
+            return CreatedAtRoute("GetEmployees", new { id = employees.id }, employees);
         }
         #endregion
 
@@ -82,7 +82,7 @@ namespace api.system.employees.Controllers
         [SwaggerResponse((int)HttpStatusCode.InternalServerError, Description = "Erro na API")]
         public IActionResult Update(long id, [FromBody] Employees employees)
         {
-            if (employees == null || employees.Id != id)
+            if (employees == null || employees.id != id)
                 return BadRequest();
 
             var _employees = repository.Find(id);
@@ -90,20 +90,20 @@ namespace api.system.employees.Controllers
             if (_employees == null)
                 return NotFound();
 
-            _employees.Name = employees.Name;
-            _employees.CPF = employees.CPF;
-            _employees.CEP = employees.CEP;
-            _employees.Telephone = employees.Telephone;
-            _employees._Address = employees._Address;
-            _employees.City = employees.City;
-            _employees._State = employees._State;
+            _employees.name = employees.name;
+            _employees.cpf = employees.cpf;
+            _employees.cep = employees.cep;
+            _employees.telephone = employees.telephone;
+            _employees.address = employees.address;
+            _employees.city = employees.city;
+            _employees.state = employees.state;
             _employees.neighborhood = employees.neighborhood;
-            _employees.Datebirth = employees.Datebirth;
-            _employees.Dateregister = employees.Dateregister;
-            _employees.SectorId = employees.SectorId;
+            _employees.datebirth = employees.datebirth;
+            _employees.dateregister = employees.dateregister;
+            _employees.sectorId = employees.sectorId;
 
             repository.update(_employees);
-            return CreatedAtRoute("GetEmployees", new { id = employees.Id }, employees);
+            return CreatedAtRoute("GetEmployees", new { id = employees.id }, employees);
         }
         #endregion
 
@@ -122,7 +122,7 @@ namespace api.system.employees.Controllers
                 return NotFound();
 
             repository.remove(id);
-            return CreatedAtRoute("GetEmployees", new { id = employee.Id }, employee);
+            return CreatedAtRoute("GetEmployees", new { id = employee.id }, employee);
         }
         #endregion
     }

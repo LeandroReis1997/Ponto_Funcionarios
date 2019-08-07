@@ -22,12 +22,12 @@
     {
         <tbody>
             <tr>
-                <td>@item.Name</td>
-                <td>@item.Active</td>
+                <td>@item.name</td>
+                <td>@item.active</td>
 
                 <td>
-                    <a asp-controller="sectors" asp-action="update" asp-route-id="@item.Id" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                    <a asp-controller="sectors" asp-action="delete" asp-route-id="@item.Id" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                    <a asp-controller="sectors" asp-action="update" asp-route-id="@item.id" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                    <a asp-controller="sectors" asp-action="delete" asp-route-id="@item.id" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
                 </td>
             </tr>
         </tbody>

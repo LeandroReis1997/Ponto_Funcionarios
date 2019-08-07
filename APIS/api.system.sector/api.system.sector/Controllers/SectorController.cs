@@ -94,7 +94,7 @@ namespace api.system.sector.Controllers
 
             repository.add(sector);
 
-            return CreatedAtRoute("GetSector", new { id = sector.Id }, sector);
+            return CreatedAtRoute("GetSector", new { id = sector.id }, sector);
         }
 
         #endregion
@@ -110,7 +110,7 @@ namespace api.system.sector.Controllers
         [SwaggerResponse((int)HttpStatusCode.InternalServerError, Description = "Erro na API")]
         public IActionResult Update(long id, [FromBody] Sector sector)
         {
-            if (sector == null || sector.Id != id)
+            if (sector == null || sector.id != id)
                 return BadRequest();
 
             var _sector = repository.Find(id);
@@ -118,11 +118,11 @@ namespace api.system.sector.Controllers
             if (_sector == null)
                 return NotFound();
 
-            _sector.Name = sector.Name;
-            _sector.Active = sector.Active;
+            _sector.name = sector.name;
+            _sector.active = sector.active;
 
             repository.update(_sector);
-            return CreatedAtRoute("GetSector", new { id = sector.Id }, sector);
+            return CreatedAtRoute("GetSector", new { id = sector.id }, sector);
         }
         #endregion
 
@@ -140,7 +140,7 @@ namespace api.system.sector.Controllers
                 return NotFound();
 
             repository.remover(id);
-            return CreatedAtRoute("GetSector", new { id = sector.Id }, sector);
+            return CreatedAtRoute("GetSector", new { id = sector.id }, sector);
         }
         #endregion
     }
