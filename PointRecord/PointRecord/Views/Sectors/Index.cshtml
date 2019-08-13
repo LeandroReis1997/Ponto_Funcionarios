@@ -9,8 +9,6 @@
 </h1><br />
 
 <a asp-controller="sectors" asp-action="add" class="btn btn-primary btn-lg pull-right"><i class="fas fa-plus-circle"></i> Novo</a><br /><br />
-<div class="alert alert-danger mt-5" style="display:none" id="msg"></div>
-<div class="alert alert-success mt-5" style="display:none" id="msgs"></div>
 <table class="table table-hover">
     <thead>
         <tr>
@@ -58,15 +56,13 @@
             }).then((result) => {
                 if (result.value) {
                     swalWithBootstrapButtons.fire(
-                        'Deletado!')
+                        'Deletado!',
+                        `O setor ${name} foi removido`,
+                        'success')
                     $.get(`@Url.Action("delete", "sectors")/${id}`, () => {
-
                         setTimeout(() => {
                             $(this).parent().parent().parent().fadeOut();
                         }, 800);
-                        let msg = $("#msgs");
-                        msg.text(`O Setor ${name} foi removido`);
-                        msg.show();
                         setTimeout(() => {
                             msg.hide();
                         }, 5000);
