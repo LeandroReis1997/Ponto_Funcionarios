@@ -9,7 +9,8 @@
 </h1><br />
 
 <a asp-controller="sectors" asp-action="add" class="btn btn-primary btn-lg pull-right"><i class="fas fa-plus-circle"></i> Novo</a><br /><br />
-
+<div class="alert alert-danger mt-5" style="display:none" id="msg"></div>
+<div class="alert alert-success mt-5" style="display:none" id="msgs"></div>
 <table class="table table-hover">
     <thead>
         <tr>
@@ -27,9 +28,67 @@
 
                 <td>
                     <a asp-controller="sectors" asp-action="update" asp-route-id="@item.id" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                    <a asp-controller="sectors" asp-action="delete" asp-route-id="@item.id" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                    <a class="btnRemover btn btn-danger" id="@item.id" name="@item.name"><i class="fas fa-trash-alt" style="color:white;"></i></a>
                 </td>
             </tr>
         </tbody>
     }
 </table>
+@section scripts {
+    <script>
+        $(".btnRemover").on("click", function () {
+            var id = $(this).attr("id");
+            var name = $(this).attr("name");
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success',
+                        cancelButton: 'btn btn-danger'
+                    },
+                    buttonsStyling: true
+                })
+
+            swalWithBootstrapButtons.fire({
+                title: 'Você tem certeza?',
+                text: `Deseja apagar o setor ${name} ?`,
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sim, Confirmar',
+                cancelButtonText: 'Não, Cancelar',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                    swalWithBootstrapButtons.fire(
+                        'Deletado!')
+                    $.get(`@Url.Action("delete", "sectors")/${id}`, () => {
+
+                        setTimeout(() => {
+                            $(this).parent().parent().parent().fadeOut();
+                        }, 800);
+                        let msg = $("#msgs");
+                        msg.text(`O Setor ${name} foi removido`);
+                        msg.show();
+                        setTimeout(() => {
+                            msg.hide();
+                        }, 5000);
+
+                    }).fail((error) => {
+                        let msg = $("#msg");
+                        msg.text("Não possível completar a operação");
+                        msg.show();
+                        setTimeout(() => {
+                            msg.hide();
+                        }, 5000);
+                    });
+                    } else if (
+                        result.dismiss === Swal.DismissReason.cancel
+                    ) {
+                        swalWithBootstrapButtons.fire(
+                            'Cancelado',
+                            'Exclusão abortada!',
+                            'error'
+                        )
+                    }
+                })
+        });
+    </script>
+}
