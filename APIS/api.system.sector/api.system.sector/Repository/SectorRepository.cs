@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using api.system.sector.Models;
 
@@ -36,9 +37,17 @@ namespace api.system.sector.Repository
 
         public void remover(long id)
         {
-            var entity = _context.Sectors.First(w => w.id == id);
-            _context.Sectors.Remove(entity);
-            _context.SaveChanges();
+            try
+            {
+                var entity = _context.Sectors.First(w => w.id == id);
+                _context.Sectors.Remove(entity);
+                _context.SaveChanges();
+
+            }
+            catch (Exception)
+            {
+                throw new Exception("Ops! Houve alguma falha durante o processo.");
+            }
         }
 
         public void update(Sector sector)

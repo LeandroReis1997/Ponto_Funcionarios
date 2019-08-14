@@ -55,6 +55,20 @@ namespace PointRecord.Controllers
             var update = await sectorsRestClient.Update(id, sectors);
             return RedirectToAction("Index", update);
         }
+
+        [Route("activedeactivates/{id}")]
+        public async Task<IActionResult> UpdateActive(int id, Sectors sectors)
+        {
+            var sectorsRestClient = new SectorsRestClient();
+            var _sectors = sectorsRestClient.Find
+        (id).Result.Content.ReadAsAsync<Sectors>().Result;
+
+            if (_sectors.active) { _sectors.active = false; }
+            else { _sectors.active = sectors.active; }
+
+            var update = await sectorsRestClient.Update(id, _sectors);
+            return RedirectToAction("Index", update);
+        }
         #endregion
 
         #region Delete

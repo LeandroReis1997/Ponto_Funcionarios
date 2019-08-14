@@ -25,6 +25,9 @@
                 <td>@item.active</td>
 
                 <td>
+                    <a href="@Url.Action("activedeactivates", "sectors", new { item.id })" class="btn btn-default">
+                        <i class="@(item.active ? "fas fa-eye" : "fas fa-eye-slash")"></i>
+                    </a>
                     <a asp-controller="sectors" asp-action="update" asp-route-id="@item.id" class="btn btn-warning"><i class="fas fa-edit"></i></a>
                     <a class="btnRemover btn btn-danger" id="@item.id" name="@item.name"><i class="fas fa-trash-alt text-light"></i></a>
                 </td>

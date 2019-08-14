@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using api.system.employees.Models;
 
@@ -31,9 +32,16 @@ namespace api.system.employees.Repository
 
         public void remove(long id)
         {
-            var entity = _context.Employees.FirstOrDefault(d => d.id == id);
-            _context.Employees.Remove(entity);
-            _context.SaveChanges();
+            try
+            {
+                var entity = _context.Employees.FirstOrDefault(d => d.id == id);
+                _context.Employees.Remove(entity);
+                _context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Ops! Houve alguma falha durante o processo.");
+            }
         }
 
         public void update(Employees employees)

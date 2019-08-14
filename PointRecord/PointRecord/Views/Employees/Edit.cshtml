@@ -6,74 +6,87 @@
 
 <section>
 
-    <form asp-controller="employees" method="post" asp-action="update">
-        <h1 class="text-center" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
-            Cadastro de Funcionários
-        </h1><br />
+    @if (Model.Sector.Count > 0)
+    {
+        <form asp-controller="employees" method="post" asp-action="update">
+            <h1 class="text-center" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
+                Cadastro de Funcionários
+            </h1><br />
+            <div class="row">
+                <div class="col-md-4">
+                    <label>Name:</label>
+                    <input type="text" class="form-control" asp-for="name" required />
+                </div>
+                <div class="col-md-4">
+                    <label>CPF:</label>
+                    <input type="text" class="form-control" asp-for="cpf" id="cpf" required />
+                </div>
+                <div class="col-md-4">
+
+                    <label>CEP:</label>
+                    <input type="text" class="form-control" asp-for="cep" id="cep" onblur="pesquisacep(this.value);" required />
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <label>Telefone:</label>
+                    <input type="text" class="form-control" asp-for="telephone" id="tel" required />
+                </div>
+
+                <div class="col-md-4">
+                    <label>Endereço:</label>
+                    <input type="text" class="form-control" asp-for="address" id="rua" required />
+                </div>
+
+                <div class="col-md-4">
+                    <label>Cidade:</label>
+                    <input type="text" class="form-control" asp-for="city" id="cidade" required />
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label>Estado:</label>
+                    <input type="text" class="form-control" asp-for="state" id="uf" required />
+                </div>
+
+                <div class="col-md-4">
+                    <label>Bairro:</label>
+                    <input type="text" class="form-control" asp-for="neighborhood" id="bairro" required />
+                </div>
+
+                <div class="col-md-4">
+                    <label>Data Nascimento:</label>
+                    <input type="text" class="form-control" asp-for="datebirth" id="date" required />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Data Cadastro:</label>
+                    <input type="text" class="form-control" asp-for="dateregister" required />
+                </div>
+
+                <div class="col-md-6">
+                    @Html.LabelFor(m => m.sectorId, "Setor")
+                    @Html.DropDownListFor(m => m.sectorId, new SelectList(Model.Sector, "id", "name", Model.Sector.First().id), "-- Selecione o Setor --", new { @class = "form-control", @id = "sector", @required = "true", @style = "padding-top: 3px;" })<br />
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;">salvar</button>
+
+        </form>
+    }
+    else
+    {
+        <h2 class="text-center text-danger"><b>Erro - Nenhum setor encontrado</b></h2><br />
         <div class="row">
-            <div class="col-md-4">
-                <label>Name:</label>
-                <input type="text" class="form-control" asp-for="name" required />
-            </div>
-            <div class="col-md-4">
-                <label>CPF:</label>
-                <input type="text" class="form-control" asp-for="cpf" id="cpf" required />
-            </div>
-            <div class="col-md-4">
-
-                <label>CEP:</label>
-                <input type="text" class="form-control" asp-for="cep" id="cep" onblur="pesquisacep(this.value);" required />
-
+            <div class="col-md-12">
+                <h3 class="text-center alert alert-danger">@ViewBag.sector</h3>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4">
-                <label>Telefone:</label>
-                <input type="text" class="form-control" asp-for="telephone" id="tel" required />
-            </div>
+    }
 
-            <div class="col-md-4">
-                <label>Endereço:</label>
-                <input type="text" class="form-control" asp-for="address" id="rua" required />
-            </div>
-
-            <div class="col-md-4">
-                <label>Cidade:</label>
-                <input type="text" class="form-control" asp-for="city" id="cidade" required />
-            </div>
-
-        </div>
-
-        <div class="row">
-            <div class="col-md-4">
-                <label>Estado:</label>
-                <input type="text" class="form-control" asp-for="state" id="uf" required />
-            </div>
-
-            <div class="col-md-4">
-                <label>Bairro:</label>
-                <input type="text" class="form-control" asp-for="neighborhood" id="bairro" required />
-            </div>
-
-            <div class="col-md-4">
-                <label>Data Nascimento:</label>
-                <input type="text" class="form-control" asp-for="datebirth" id="date" required />
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <label>Data Cadastro:</label>
-                <input type="text" class="form-control" asp-for="dateregister" required />
-            </div>
-
-            <div class="col-md-6">
-                @Html.LabelFor(m => m.sectorId, "Setor")
-                @Html.DropDownListFor(m => m.sectorId, new SelectList(Model.Sector, "id", "name", Model.Sector.First().id), "-- Selecione o Setor --", new { @class = "form-control", @id = "sector", @required = "true", @style = "padding-top: 3px;" })<br />
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary" style="width:100%;">salvar</button>
-
-    </form>
 
 </section>

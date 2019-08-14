@@ -52,6 +52,7 @@ namespace PointRecord.Controllers
         {
             var employeesRestClient = new EmployeesRestClient();
             var sector = new SectorsRestClient();
+            ViewBag.sector = "Atualize os setores do sistema...";
             var employees = await employeesRestClient.Find
                 (id).Result.Content.ReadAsAsync<Employeees>();
             employees.Sector = await sector.GetAllOrderBy().Result.Content.ReadAsAsync<List<Sectors>>();
