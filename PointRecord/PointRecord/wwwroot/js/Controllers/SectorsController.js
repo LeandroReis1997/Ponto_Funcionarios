@@ -2,7 +2,7 @@
     StartSector() {
         $(".btnRemover").on("click", function () {
             var id = $(this).attr("id");
-            let url = "/sectors/delete/" + id;
+            let url = `/sectors/delete/${id}`;
             var name = $(this).attr("name");
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {
@@ -30,16 +30,16 @@
                     }, 5000);
                     swalWithBootstrapButtons.fire(
                         'Deletado!',
-                        `O setor ${name} foi removido`,
+                        `O setor ${name} foi removido!`,
                         'success')
-                    toastr.success("Setor excluído com sucesso");
+                    toastr.success("Setor excluído com sucesso!");
 
                     $.ajax({
                         type: 'POST',
                         url: url
 
                     }).fail((error) => {
-                        toastr.error("Falha na operação")
+                        toastr.error("Falha na operação!")
                         setTimeout(() => {
                             msg.hide();
                         }, 5000);
