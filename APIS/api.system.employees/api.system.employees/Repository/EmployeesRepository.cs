@@ -16,7 +16,21 @@ namespace api.system.employees.Repository
 
         public void add(Employees employees)
         {
-            _context.Add(employees);
+            var employee = new Employees()
+            {
+                name = employees.name,
+                cpf = Converter(employees.cpf),
+                cep = Converter(employees.cep),
+                telephone = Converter(employees.telephone),
+                address = employees.address,
+                city = employees.city,
+                state = employees.state,
+                neighborhood = employees.neighborhood,
+                datebirth = employees.datebirth,
+                dateregister = employees.dateregister,
+                sectorId = employees.sectorId
+            };
+            _context.Add(employee);
             _context.SaveChanges();
         }
 
@@ -48,6 +62,17 @@ namespace api.system.employees.Repository
         {
             _context.Employees.Update(employees);
             _context.SaveChanges();
+        }
+
+        private string Converter(string text)
+        {
+            if (text == null) return null;
+
+            return text.Replace("-", "")
+                .Replace(".", "")
+                .Replace("(", "")
+                .Replace(")", "")
+                .Replace(" ", "");
         }
     }
 }
