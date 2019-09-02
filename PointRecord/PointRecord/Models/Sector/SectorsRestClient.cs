@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -10,10 +8,10 @@ namespace PointRecord.Models.Sector
     public class SectorsRestClient
     {
         //Rodar api pelo IIS
-        private string BASE_URL = "https://localhost:44357/api/sector/";
+        //private string BASE_URL = "https://localhost:44357/api/sector/";
 
         //Rodar pelo Console
-        //private string BASE_URL = "https://localhost:5001/api/sector/";
+        private string BASE_URL = "https://localhost:5001/api/sector/";
 
         public Task<HttpResponseMessage> GetAll()
         {

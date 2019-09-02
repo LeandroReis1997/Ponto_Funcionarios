@@ -36,60 +36,16 @@
         </tbody>
     }
 </table>
-@section scripts {
-    <script>
-        $(".btnRemover").on("click", function () {
-            var id = $(this).attr("id");
-            var name = $(this).attr("name");
-                const swalWithBootstrapButtons = Swal.mixin({
-                    customClass: {
-                        confirmButton: 'btn btn-success',
-                        cancelButton: 'btn btn-danger'
-                    },
-                    buttonsStyling: true
-                })
+@section Scripts {
+    <environment names="Development">
+        <script src="~/js/Controllers/EmployeesController.js"></script>
+    </environment>
 
-            swalWithBootstrapButtons.fire({
-                title: 'Você tem certeza?',
-                text: `Deseja apagar o funcionário ${name} ?`,
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Sim, Confirmar',
-                cancelButtonText: 'Não, Cancelar',
-                reverseButtons: true
-            }).then((result) => {
-                if (result.value) {
-                    swalWithBootstrapButtons.fire(
-                        'Deletado!',
-                        `O funcionário ${name} foi removido`,
-                        'success')
+    <script type="text/javascript">
+        let ctrl = new EmployeesController();
 
-                    $.get(`@Url.Action("delete", "employees")/${id}`, () => {
-                        setTimeout(() => {
-                            $(this).parent().parent().parent().fadeOut();
-                        }, 800);
-                        setTimeout(() => {
-                            msg.hide();
-                        }, 5000);
-
-                    }).fail((error) => {
-                        let msg = $("#msg");
-                        msg.text("Não possível completar a operação");
-                        msg.show();
-                        setTimeout(() => {
-                            msg.hide();
-                        }, 5000);
-                    });
-                    } else if (
-                        result.dismiss === Swal.DismissReason.cancel
-                    ) {
-                        swalWithBootstrapButtons.fire(
-                            'Cancelado',
-                            'Exclusão abortada!',
-                            'error'
-                        )
-                    }
-                })
+        $(document).ready(function () {
+            ctrl.StartEmployees();
         });
     </script>
 }
