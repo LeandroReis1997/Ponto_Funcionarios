@@ -32,15 +32,14 @@
                         'Deletado!',
                         `O setor ${name} foi removido`,
                         'success')
+                    toastr.success("Setor excluído com sucesso");
 
                     $.ajax({
                         type: 'POST',
                         url: url
 
                     }).fail((error) => {
-                        let msg = $("#msg");
-                        msg.text("Não possível completar a operação");
-                        msg.show();
+                        toastr.error("Falha na operação")
                         setTimeout(() => {
                             msg.hide();
                         }, 5000);
