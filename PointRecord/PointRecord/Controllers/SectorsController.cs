@@ -63,8 +63,7 @@ namespace PointRecord.Controllers
             var sectors = sectorsRestClient.Find
         (id).Result.Content.ReadAsAsync<Sectors>().Result;
 
-            if (sectors.active) { sectors.active = false; }
-            else { sectors.active = true; }
+            sectors.active = sectors.active ? sectors.active = false : sectors.active = true;
 
             var update = await sectorsRestClient.Update(id, sectors);
             return RedirectToAction("Index", update);
