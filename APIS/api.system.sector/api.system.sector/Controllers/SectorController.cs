@@ -71,6 +71,26 @@ namespace api.system.sector.Controllers
             return new ObjectResult(sector);
         }
 
+        /// <summary>
+        /// Retorna um setor através de seu nome
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("FindName/{name}")]
+        [Produces(typeof(IEnumerable<Sector>))]
+        [SwaggerResponse((int)HttpStatusCode.OK, Description = "OK", Type = typeof(Sector))]
+        [SwaggerResponse((int)HttpStatusCode.Unauthorized, Description = "Erro de Autenticação")]
+        [SwaggerResponse((int)HttpStatusCode.NotFound, Description = "Recurso não encontrado")]
+        [SwaggerResponse((int)HttpStatusCode.InternalServerError, Description = "Erro na API")]
+        public IActionResult GetByName(string name)
+        {
+            var sector = repository.FindName(name);
+            if (sector == null)
+                return NotFound();
+
+            return new ObjectResult(sector);
+        }
+
         #endregion
 
         #region Create

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PointRecord.Models.Sector
 {
@@ -8,7 +9,7 @@ namespace PointRecord.Models.Sector
         public int id { get; set; }
         public string name { get; set; }
         public bool active { get; set; }
-
+        public string search { get; set; }
         public Sectors()
         {
             this.active = true;

@@ -8,8 +8,13 @@
     Lista de Funcionários
 </h1><br />
 
-
 <a asp-controller="employees" asp-action="add" class="btn btn-primary btn-lg pull-right"><i class="fas fa-plus-circle"></i> Novo</a><br /><br />
+
+<form asp-controller="employees" method="post" asp-action="index">
+
+    @Html.TextBox("name", null, new { @class = "form-control" })
+
+</form>
 
 <table class="table table-hover">
     <thead>

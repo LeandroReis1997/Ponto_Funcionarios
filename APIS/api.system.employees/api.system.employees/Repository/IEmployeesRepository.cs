@@ -5,11 +5,13 @@ namespace api.system.employees.Repository
 {
     public interface IEmployeesRepository
     {
-        void add(Employees employees);
-
         IEnumerable<Employees> GetAll();
 
+        IEnumerable<Employees> FindName(string name);
+
         Employees Find(long id);
+
+        void add(Employees employees);
 
         void update(Employees employees);
 

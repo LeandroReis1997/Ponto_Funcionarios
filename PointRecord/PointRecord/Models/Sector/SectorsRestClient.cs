@@ -8,10 +8,10 @@ namespace PointRecord.Models.Sector
     public class SectorsRestClient
     {
         //Rodar api pelo IIS
-        //private string BASE_URL = "https://localhost:44357/api/sector/";
+        private string BASE_URL = "https://localhost:44357/api/sector/";
 
         //Rodar pelo Console
-        private string BASE_URL = "https://localhost:5001/api/sector/";
+        //private string BASE_URL = "https://localhost:5001/api/sector/";
 
         public Task<HttpResponseMessage> GetAll()
         {
@@ -37,9 +37,17 @@ namespace PointRecord.Models.Sector
             client.BaseAddress = new Uri(BASE_URL);
             client.DefaultRequestHeaders.Accept.Add(new
                 MediaTypeWithQualityHeaderValue("application/json"));
-            return client.GetAsync("find/" + id);
+            return client.GetAsync($"find/{id}");
         }
 
+        public Task<HttpResponseMessage> FindName(string name)
+        {
+            var client = new HttpClient();
+            client.BaseAddress = new Uri(BASE_URL);
+            client.DefaultRequestHeaders.Accept.Add(new
+                MediaTypeWithQualityHeaderValue("application/json"));
+            return client.GetAsync($"findname/{name}");
+        }
         public Task<HttpResponseMessage> Create(Sectors sectors)
         {
             var client = new HttpClient();

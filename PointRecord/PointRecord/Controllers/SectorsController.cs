@@ -10,11 +10,25 @@ namespace PointRecord.Controllers
     public class SectorsController : Controller
     {
         #region Read
+        [HttpGet("index")]
         public async Task<IActionResult> Index()
         {
             var sectorsRestClient = new SectorsRestClient();
             var sectors = await sectorsRestClient.GetAll
             ().Result.Content.ReadAsAsync<List<Sectors>>();
+            return View(sectors);
+        }
+
+        [HttpPost("index")]
+        public async Task<IActionResult> Index(string name)
+        {
+            var sectorsRestClient = new SectorsRestClient();
+            var sectors = await sectorsRestClient.FindName(name)
+            .Result.Content.ReadAsAsync<List<Sectors>>();
+
+            if (sectors == null)
+                return RedirectToAction("Index");
+
             return View(sectors);
         }
         #endregion
@@ -66,7 +80,7 @@ namespace PointRecord.Controllers
             sectors.active = sectors.active ? sectors.active = false : sectors.active = true;
 
             var update = await sectorsRestClient.Update(id, sectors);
-            return RedirectToAction("Index", update);
+            return RedirectToAction("Index");
         }
         #endregion
 

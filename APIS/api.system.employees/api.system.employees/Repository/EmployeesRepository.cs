@@ -44,6 +44,11 @@ namespace api.system.employees.Repository
             return _context.Employees.ToList();
         }
 
+        public IEnumerable<Employees> FindName(string name)
+        {
+            return _context.Employees.Where(d => d.name.Contains(name));
+        }
+
         public void remove(long id)
         {
             try

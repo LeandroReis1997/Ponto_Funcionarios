@@ -28,8 +28,18 @@ namespace PointRecord.Models.Employees
             client.BaseAddress = new Uri(BASE_URL);
             client.DefaultRequestHeaders.Accept.Add(new
                 MediaTypeWithQualityHeaderValue("application/json"));
-            return client.GetAsync("find/" + id);
+            return client.GetAsync($"find/{id}");
         }
+
+        public Task<HttpResponseMessage> FindName(string name)
+        {
+            var client = new HttpClient();
+            client.BaseAddress = new Uri(BASE_URL);
+            client.DefaultRequestHeaders.Accept.Add(new
+                MediaTypeWithQualityHeaderValue("application/json"));
+            return client.GetAsync($"findname/{name}");
+        }
+
 
         public Task<HttpResponseMessage> Create(Employeees employees)
         {

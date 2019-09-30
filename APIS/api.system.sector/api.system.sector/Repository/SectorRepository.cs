@@ -35,6 +35,11 @@ namespace api.system.sector.Repository
             return _context.Sectors.Where(x => x.active == true).ToList();
         }
 
+        public IEnumerable<Sector> FindName(string name)
+        {
+            return _context.Sectors.Where(f => f.name.Contains(name));
+        }
+
         public void remover(long id)
         {
             try

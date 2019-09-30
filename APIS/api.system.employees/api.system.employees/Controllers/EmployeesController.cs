@@ -48,6 +48,21 @@ namespace api.system.employees.Controllers
 
             return new ObjectResult(employee);
         }
+
+        [HttpGet("FindName/{name}")]
+        [Produces(typeof(IEnumerable<Employees>))]
+        [SwaggerResponse((int)HttpStatusCode.OK, Description = "OK", Type = typeof(Employees))]
+        [SwaggerResponse((int)HttpStatusCode.Unauthorized, Description = "Erro de Autenticação")]
+        [SwaggerResponse((int)HttpStatusCode.NotFound, Description = "Recurso não encontrado")]
+        [SwaggerResponse((int)HttpStatusCode.InternalServerError, Description = "Erro na API")]
+        public IActionResult GetByName(string name)
+        {
+            var employee = repository.FindName(name);
+            if (employee == null)
+                NotFound();
+
+            return new ObjectResult(employee);
+        }
         #endregion
 
         #region Create

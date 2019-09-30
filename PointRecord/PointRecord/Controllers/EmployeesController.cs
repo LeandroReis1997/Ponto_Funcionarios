@@ -12,11 +12,25 @@ namespace PointRecord.Controllers
     public class EmployeesController : Controller
     {
         #region Read
+        [HttpGet("index")]
         public async Task<IActionResult> Index()
         {
             var employeesRestClient = new EmployeesRestClient();
             var employees = await employeesRestClient.GetAll
             ().Result.Content.ReadAsAsync<List<Employeees>>();
+            return View(employees);
+        }
+
+        [HttpPost("index")]
+        public async Task<IActionResult> Index(string name)
+        {
+            var employeesRestClient = new EmployeesRestClient();
+            var employees = await employeesRestClient.FindName(name)
+            .Result.Content.ReadAsAsync<List<Employeees>>();
+
+            if (employees == null)
+                return RedirectToAction("Index");
+
             return View(employees);
         }
         #endregion

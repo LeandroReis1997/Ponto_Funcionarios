@@ -5,13 +5,16 @@ namespace api.system.sector.Repository
 {
     public interface ISectorRepository
     {
-        void add(Sector sector);
 
         IEnumerable<Sector> GetAll();
 
         IEnumerable<Sector> GetAllOrderBy();
 
+        IEnumerable<Sector> FindName(string name);
+
         Sector Find(long id);
+
+        void add(Sector sector);
 
         void update(Sector sector);
 
